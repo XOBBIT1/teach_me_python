@@ -9,7 +9,7 @@ age = 33
 height = 182
 year = 2021
 birth_year = year - age
-bio = name + " " + surname + " " + "ростом" + " " + str(height)
+bio = name + " " + surname + " " + "ростом" + " " + str(height) + " " + "см"
 
 print(birth_year, bio )
 
