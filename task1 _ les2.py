@@ -23,4 +23,4 @@ templates = (
     "{name} {surname} скоро пойдет в школу",
 )
 
-print(templates[dict_2["age"] < 7].format(name = dict_2["name"], surname = dict_2["surname"])
+print(templates[dict_2["age"] < 7].format(name = dict_2["name"], surname = dict_2["surname"]))
