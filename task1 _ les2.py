@@ -4,28 +4,18 @@
 если пользователю менее 7 лет: "{name} {surname} закончил школу"
 Внимание конструкцию IF ELSE мы не используем (мы ее еще не изучали, и даже если знаете не используйте)
 """
+
 dict_1 =  {
         "name": "Jon",
         "surname": "Smith",
         "age": 6,
     }
-dict_2  = {
+dict_2= {
         "name": "Bill",
         "surname": "Suns",
         "age": 20,
     }
-
-users = (
-    {
-        "name": "Jon",
-        "surname": "Smith",
-        "age": 6,
-    },
-    {
-        "name": "Bill",
-        "surname": "Suns",
-        "age": 20,
-    }
+users = (dict_1, dict_2
 )
 
 templates = (
@@ -33,3 +23,4 @@ templates = (
     "{name} {surname} скоро пойдет в школу",
 )
 
+print(templates[dict_2["age"] < 7].format(name = dict_2["name"], surname = dict_2["surname"]))
