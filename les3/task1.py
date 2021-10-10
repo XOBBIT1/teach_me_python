@@ -12,8 +12,11 @@
 """
 
 user = input("Введите числа:\n")
-user_list = user.split('')
+number = user.split(' ')
 n = 0
-while n <
-
-print(target_user)
+while n < len(number) - 1:
+        number[n], number[n + 1] = number[n + 1], number[n]
+        n += 2
+        # if n(str) < len(number) - 1:
+        #     print("Введите, пожалуйста, число")
+print(number)

@@ -5,8 +5,12 @@
 """
 
 user = str(input("Введите строку:\n"))
-user_target = user.split('')
-n = 1
-while user_target[0]:
-    print(user_target, "\n>>>")
-    n += 1
+user_target = user.split(' ')
+n = 0
+while n < len(user_target):
+     if len(user_target[n]) >= 10:
+        print(f"{n+1}:{user_target[n][:10]} \n")
+     else:
+        print(f"{n + 1}:{user_target[n]} \n")
+     n += 1
+
