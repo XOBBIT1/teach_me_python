@@ -37,3 +37,5 @@ def game_cycle(users: list[dict, ...], board: list[list]):
 
 game_vars = game_init()
 game_cycle(**game_vars)
+
+'hello'
