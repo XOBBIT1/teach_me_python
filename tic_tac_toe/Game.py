@@ -1,3 +1,6 @@
+from itertools import cycle
+from  Steps import step_from_user
+
 
 """
 Крестики нолики
@@ -59,6 +62,15 @@ def interface_user(pattern_name, **pattern_var):
     else:
         print(inter_str[pattern_name])
 
+def creat_board(size):
+    all_board = []
+    for i in range(size):
+        row = []
+        for i in range(size):
+            row.append(0)
+        all_board.append(row)
+    return all_board
+
 def match_matrix(board):
     def chel_line(line):
         line_set = set(line)
@@ -78,5 +90,16 @@ def match_matrix(board):
     return False
 
 
-def game_start(user: list, board):
-    pass
+def game_start(users: list[dict], board: list[list]):
+    for num_step, user in enumerate(cycle(users)):
+        print(f"Ход Игрока: {user['name']}")
+        step_from_user(user,board)
+        if match_matrix(board):
+            print(f"Победил {user['name']}")
+            break
+        if num_step >= 8:
+            print("Ничья")
+            break
+    print("Game Over")
+
+game_start([{"name": 1, "token": "x"},{"name": 2, "token": "O"}], creat_board(3))
