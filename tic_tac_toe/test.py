@@ -1,5 +1,6 @@
 from Game import match_matrix
-
+from Game import game_start, creat_board
+from user import get_user
 def test_board():
     matrix_test = (
         (([1, 1, 1],
@@ -47,3 +48,8 @@ def test_board():
         assert match_matrix(test[0]) is test[1], test[0]
 
 test_board()
+
+game_start([{"name": 1, "token": "x"},{"name": 2, "token": "O"}], creat_board(3))
+
+us = get_user("COMP","X")
+print(us)
