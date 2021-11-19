@@ -2,7 +2,6 @@ import random # импортиреует random
 from Constant import COMP_RANDOM, PATTEREN_USER
 
 
-
 def comp(symbol)-> dict:#
     return { "name": random.choice(COMP_RANDOM), # Возвращает случайное имя компьютера
              "symbol": symbol, # символ нолик по дефолту становится символом компьютера

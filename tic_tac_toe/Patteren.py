@@ -1,12 +1,5 @@
 inter_str = {
-    "Rules": "",
-    "Hello": "Добро пожаловать в Крестики/нолики ",
-    "Name": "Введите имя",
-    "Mod": "С кем вы будете играть? {variants}",
-    "Ask_step": "Ход #{step_number} грока {name}",
-    "Win": "Победу одержал {name} на ходу {step_number}",
-    "New_game":"Желаете насать новую игру ? {variants}",
-    "Draw": "Ничья"
+    "HElP": "HElP",
 }
 
 pattern_variants = {
@@ -17,11 +10,10 @@ pattern_variants = {
     "Enter_name": lambda pattern, **kwargs: pattern.format(**kwargs)#будем хранить функции, которые будут возвращать готовую строку
 }
 
-
-def interface_user(pattern_name, **pattern_var):# на вход принемает один из ключей словаря pattern_variants, **pattern_var является **kwargs для универсальности
-    if pattern_name in pattern_variants:# если pattern_name находится в pattern_variants
-        ask_str = pattern_variants[pattern_name](inter_str[pattern_name], **pattern_var)#  так как ключом является lambda, то и на вход мы запрашиваем значения функции
-        user_input = input(ask_str)# спрашиваем пользователя
-        return user_input# возращаем ответ
-    else:
-        print(inter_str[pattern_name])  # в ином случае просто выводим значение введённго ключа
+pattern_user =(
+    ("name",lambda *args,**kwargs:input("Введите ваше имя:")),# просим ввести имя
+    ("symbol",lambda symbol, *args,**kwargs:symbol),# инициализируем символ
+    ("steps",lambda *args,**kwargs: list()),# записывает в список все шаги
+    ("all_steps",lambda *args, **kwargs: set()),#записываем все шаги всех пользователей
+    ("user_type", lambda user_type, *args, **kwargs: user_type),# создана для понимания, комп это или человек
+)
