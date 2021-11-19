@@ -1,4 +1,4 @@
-from random import random
+import random
 
 def get_step() -> tuple:
     while True:
@@ -40,7 +40,7 @@ def step_from_user(user: dict, board: list[list]):
             print("Ячейка не существует или заята") # в ином случае, ячейка либо занята либо её нет
             continue # продолжаем провеку
 
-def step_auto(user,board:list[list]):#
+def step_auto(user, board: list[list]):#
     board_size = len(board)# вычисляем длинну строки
-    all_steps_varints = set((i, j) for i in range(board_size)for j in range(board_size))# формируем сет из набора кортежей всех ходов
-    return random.choise(tuple(all_steps_varints(user["all_steps"])))# возвращаем отличе от всех возможных ходов
+    all_steps_variants = set((i, j) for i in range(board_size) for j in range(board_size))# формируем сет из набора кортежей всех ходов
+    return random.choice(tuple(all_steps_variants.difference(user["all_steps"])))# возвращаем отличе от всех возможных ходов
