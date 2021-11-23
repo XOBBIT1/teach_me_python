@@ -33,8 +33,6 @@ class Publication(Base):
     __tablename__ = 'publication'
     id = Column(Integer,  primary_key=True, autoincrement=True)
     name_Publications = Column(String(100), unique=False)
-    tag_id = Column(Integer, ForeignKey("tag.id"), nullable=True)
-    tags = relationship(Tag, backref="publications")
 
 
 class Author(Base):
@@ -49,5 +47,3 @@ class Blog(Base):
     __tablename__ = 'blog'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name_Blog = Column(String(30), unique=False)
-    author_id = Column(Integer, ForeignKey("author.id"), nullable=True)
-    author = relationship(Author,  backref="blog")

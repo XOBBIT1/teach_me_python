@@ -12,7 +12,7 @@ class DataBase:
         self.maker = sessionmaker(bind=engin)
 
 def main():
-    db_url = "sqlite:///some_db1.db"
+    db_url = "sqlite:///some_db.db"
     db = DataBase(db_url)
     session = db.maker()
     random_db(session)
