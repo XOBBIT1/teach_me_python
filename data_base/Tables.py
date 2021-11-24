@@ -19,8 +19,8 @@ Base = declarative_base()
 _publicatuin_tag = Table(
     "_author_tag",
     Base.metadata,
-    Column("author.id", Integer, ForeignKey("author.id")),
-    Column("tag.id", Integer, ForeignKey("tag.id"))
+    Column("author_id", Integer, ForeignKey("author.id")),
+    Column("tag_id", Integer, ForeignKey("tag.id"))
 )
 
 
@@ -42,6 +42,10 @@ class Author(Base):
     publications_id = Column(Integer, ForeignKey("publication.id"), nullable=True)
     publications = relationship(Publication,  backref="author")
     tags = relationship(Tag, secondary="_author_tag",  backref="author")
+
+    def count_articles(self, session):
+        return session.query(Author.id).count()
+
 
 class Blog(Base):
     __tablename__ = 'blog'

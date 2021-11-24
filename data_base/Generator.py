@@ -9,13 +9,6 @@ def random_tag(session):
     session.commit()
 
 
-def random_author(session):
-    for i in range(100):
-        author_itm = Tables.Author(name_Author=lists.NSS[i], publications_id=i+1)
-        session.add(author_itm)
-    session.commit()
-
-
 def random_blog(session):
     for i in range(4):
         blog_itm = Tables.Blog(name_Blog=random.choice(lists.Blogs))
@@ -27,6 +20,26 @@ def random_publication(session):
     for i in range(21):
         publication_itm = Tables.Publication(name_Publications=random.choice(lists.Publication))
         session.add(publication_itm)
+    session.commit()
+
+def random_author(session):
+    for i in range(100):
+        author_itm = Tables.Author(name_Author=lists.NSS[i])
+        session.add(author_itm)
+    session.commit()
+
+
+def teg_author(session):
+    author_id = Tables._publicatuin_tag
+    for author in range(author_id):
+        tags_id = random.randint(10)
+        tags = set()
+        for i in range(tags_id):
+            if i not in tags:
+                teg_id = Tables._publicatuin_tag(tag_id= i, author_id=author)
+            else:
+                continue
+            session.add(teg_id)
     session.commit()
 
 
