@@ -38,10 +38,10 @@ class Publication(Base):
 class Author(Base):
     __tablename__ = 'author'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name_Author = Column(String(10), unique=False)
+    name_Author = Column(String(20), unique=False)
     publications_id = Column(Integer, ForeignKey("publication.id"), nullable=True)
     publications = relationship(Publication,  backref="author")
-    tags = relationship(Tag, secondary="_author_tag",  backref="author")
+    tags = relationship(Tag, secondary=_publicatuin_tag,  backref="author")
 
     def count_articles(self, session):
         return session.query(Author.id).count()
