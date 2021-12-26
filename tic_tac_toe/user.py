@@ -1,53 +1,26 @@
-import random
-
-from tic_tac_toe.constants import USER_TEMPLATE, COMP_NAMES, SYMBOLS
-
-
-def create_user(symbol) -> dict:
-    user = {}
-    for itm in USER_TEMPLATE:
-        user[itm[0]] = itm[1](symbol=symbol)
-    return user
+import random # импортиреует random
+from Constant import COMP_RANDOM, PATTEREN_USER
 
 
-def create_comp(symbol) -> dict:
-    return {
-        "name": random.choice(COMP_NAMES),
-        "symbol": symbol,
-        "steps": [],
-    }
+def comp(symbol)-> dict:#
+    return { "name": random.choice(COMP_RANDOM), # Возвращает случайное имя компьютера
+             "symbol": symbol, # символ нолик по дефолту становится символом компьютера
+             "steps": [], # записивыет шаги компьютера в списке
+             "all_steps": set(),
+             "user_type": "COMP",
+             }
 
+def user(symbol)-> dict: # создаём пользователя, где пользователь словарь
+    user = {}# пользователь словарь
+    for i in PATTEREN_USER:# создаём цикл, который итерируется по  user_pattern
+        user[i[0]] = i[1](symbol=symbol, user_type="USER")# 0 элемент кортежа в словаре, будет равен 1 элемнту кортежа, который находится в user_pattern
+    return user #будет возвращаться, то что написал пользователь
 
-MODES = {
-    "COMP": {"creator": create_comp},
-    "USER": {"creator": create_user},
+METHODS= {
+    "COMP": {"creator": comp}, # кулюч комп будет выводить значение функции comp, а то есть рандомного компьтера
+    "USER": {"creator": user} # ключюзер выводе значение функции user
 }
 
+def get_user(m, symbol)-> dict:# является словарём
+    return METHODS[m]["creator"](symbol=symbol)# возвращает выбор пользователя (COMP, USER)
 
-def get_user(mode, symbol) -> dict:
-    return MODES[mode]["creator"](symbol=symbol)
-
-
-def ask_mode() -> str:
-    user_modes = {idx: itm for idx, itm in enumerate(MODES, 1)}
-
-    modes_str = "\n".join(f"{key}: {value}" for key, value in user_modes.items())
-    modes_string = f"Выберите номер режима игры\n{modes_str}"
-
-    while True:
-        try:
-            mode_input = int(input(modes_string))
-            return user_modes[mode_input]
-        except ValueError:
-            print("Недопустимый ввод, введите только число")
-        except KeyError:
-            print("Недопустимое значение, повторите ввод")
-        continue
-
-
-def create_users(mode) -> list[dict]:
-    users = []
-    for symbol, mode in zip(SYMBOLS, ("USER", mode)):
-        user = get_user(mode, symbol)
-        users.append(user)
-    return users

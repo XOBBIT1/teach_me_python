@@ -1,17 +1,9 @@
-from tic_tac_toe.board import get_board, board_match
-
-
-def board_test():
-    for size in range(3, 6):
-        board = get_board(size)
-        assert len(board) == size, "Неверная размерность доски"
-        assert len(min(board)) == len(max(board)), "Неравная длина строк доски"
-        assert len(min(board)) == size, "Неверная размерность строк доски"
-        assert set(sum(board, [])) == {0, }, "Неверное заполнение доски"
-
-
-def test_board_match():
-    matrix_tests = (
+from Game import match_matrix
+from Game import game, creat_board
+from user import get_user
+from Game import game_start
+def test_board():
+    matrix_test = (
         (([1, 1, 1],
           [0, 0, 0],
           [0, 0, 0]), True),
@@ -39,21 +31,29 @@ def test_board_match():
         (([0, 0, 2],
           [0, 0, 2],
           [0, 0, 2]), True),
+
         (([2, 1, 2],
           [0, 1, 2],
           [0, 0, 1]), False),
+
         (([1, 1, 2],
           [0, 1, 2],
           [0, 0, 1]), True),
+
         (([2, 1, 1],
           [0, 1, 2],
           [1, 0, 1]), True),
     )
 
-    for test in matrix_tests:
-        assert board_match(test[0]) is test[1], test[0]
+    for test in matrix_test:
+        assert match_matrix(test[0]) is test[1], test[0]
 
+test_board()
 
-if __name__ == '__main__':
-    board_test()
-    test_board_match()
+game([{"name": 1, "token": "x"},{"name": 2, "token": "O"}], creat_board(3))
+
+us = get_user("COMP","X")
+print(us)
+
+game_st = game_start()
+print(game_st)
