@@ -20,11 +20,11 @@ def time_of_function(function):
 
 
 def compress(string: str) -> str:
-    str = " "
+    str_code = " "
     for i in string:
-        if i not in str:
-            str += f'{i}{string.count(i)}'
-    return str
+        if i not in str_code:
+            str_code += f'{i}{string.count(i)}'
+    return str_code
 
 @time_of_function
 def compress_decode(string: str):
