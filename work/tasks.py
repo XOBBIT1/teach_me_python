@@ -24,7 +24,10 @@ def compress(string: str) -> str:
     for i in string:
         if i not in str_code:
             str_code += f'{i}{string.count(i)}'
-    return str_code
+    for el in str_code:
+        if el == "1":
+           coding_srt =str_code.replace("1", '')
+    return coding_srt
 
 @time_of_function
 def compress_decode(string: str):
