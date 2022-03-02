@@ -1,12 +1,16 @@
-import nltk # импортируем библиотеку
-nltk.download('averaged_perceptron_tagger')# устанавливаем пакеты
-nltk.download('treebank')# устанавливаем пакеты
+import nltk
+nltk.download('averaged_perceptron_tagger')
+nltk.download('treebank')
 
-from nltk.tag import PerceptronTagger# из библиотеки nltk папку tag мы забираем табличку с файлами PerceptronTagger
-from nltk.corpus import treebank# из библиотеки nltk папку corpus, из этой папки мы функцию, которая считывает фалы PerceptronTagge
+from nltk.tag import PerceptronTagger
+from nltk.corpus import treebank
 
-tagger = PerceptronTagger()# присваиваем переменной фалы
-gold_data = treebank.tagged_sents()[1:10]# заносим в них данные для подщёта
-print(tagger.accuracy(gold_data))# выводим
-
-
+try:
+    your_int = input("Введите число:")
+    tagger = PerceptronTagger()
+    gold_data = treebank.tagged_sents()[1:int(your_int)]
+    print(tagger.accuracy(gold_data))
+except ZeroDivisionError:
+    print("Вы делите на ноль")
+finally:
+    print("Всё будет хорошо!!!!!!!")
