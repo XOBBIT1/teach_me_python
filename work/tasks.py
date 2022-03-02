@@ -42,5 +42,5 @@ def compress_decode(string: str):
     return "".join(decode)
 
 def frequency_sort(items):
-    return sorted(items, key= lambda part: -items.count(part))
+    return sorted(items, key=lambda part: (-items.count(part), items.index(part)))
 
